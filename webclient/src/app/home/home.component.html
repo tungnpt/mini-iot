@@ -1,0 +1,28 @@
+<div class="container">
+  <button class="pull-right" type="button" class="btn btn-primary" style="margin: 20px 0" routerLink="/device/add">Thêm thiết bị</button>
+  <div style="margin-bottom: 10px">Danh sách thiết bị</div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">STT</th>
+        <th scope="col">Device Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Operation</th>
+        <th scope="col">Option</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let device of devices; let i = index">
+      <tr>
+        <th scope="row">{{i+1}}</th>
+        <td>{{device.deviceName}}</td>
+        <td>{{device.deviceDescription}}</td>
+        <td></td>
+        <td>
+          <button type="button" class="btn btn-primary" routerLink="/device/view/{{device._id}}">View</button>
+          <button type="button" class="btn btn-info" routerLink="/device/edit/{{device._id}}">Edit</button>
+          <button type="button" class="btn btn-warning" (click)="deleteDevice(device)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

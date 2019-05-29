@@ -1,0 +1,12 @@
+<!-- <div class="container">
+  <ul *ngFor="let piData of piDatas">
+    <li>{{piData.created_at}}</li>
+    <li>{{piData.device}}</li>
+    <li>{{piData.humidity}}</li>
+    <li>{{piData.temperature}}</li>
+    <li>{{piData._id}}</li>
+  </ul>
+</div> -->
+<div class="container">
+  <app-line-chart [chart]="chart"></app-line-chart>
+</div>

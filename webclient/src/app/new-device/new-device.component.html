@@ -1,0 +1,27 @@
+<div class="container">
+  <form>
+    <div class="form-group">
+      <label for="inputName">Device Name</label>
+      <input [(ngModel)]="device.deviceName" name="deviceName" type="text" class="form-control" id="inputName" placeholder="Tên gì, viết vào đây">
+    </div>
+    <div class="form-group">
+      <label for="inputDescription">Device Description</label>
+      <input [(ngModel)]="device.deviceDescription" name="deviceDescription" type="text" class="form-control" id="inputDescription" placeholder="Một vài cái mô tả">
+    </div>
+    <div class="form-group">
+      <label for="inputLocation">Location</label>
+      <input [(ngModel)]="device.location" name="location" type="text" class="form-control" id="inputLocation" placeholder="Địa điểm nè">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputLatitude">Latitude</label>
+        <input [(ngModel)]="device.latitude" name="latitude" type="number" class="form-control" id="inputLatitude" placeholder="Vĩ độ nè">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputLongitude">Longitude</label>
+        <input [(ngModel)]="device.longitude" name="longitude" type="number" class="form-control" id="inputLongitude" placeholder="Kinh độ nè">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="saveDevice()">Lưu</button>
+  </form>
+</div>

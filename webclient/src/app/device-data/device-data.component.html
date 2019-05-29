@@ -1,0 +1,31 @@
+<div class="container">
+  <div>Device update</div>
+  <form>
+    <div class="form-group">
+      <label for="InputDeviceName">Device Name</label>
+      <input [(ngModel)]="device.deviceName" name="deviceName" type="text" class="form-control" id="InputDeviceName"
+        placeholder="Tên thiết bị" autocomplete="off">
+    </div>
+    <div class="form-group">
+      <label for="InputDeviceDescription">Device Description</label>
+      <input [(ngModel)]="device.deviceDescription" name="deviceDescription" type="text" class="form-control"
+        id="InputDeviceDescription" placeholder="Mô tả" autocomplete="off">
+    </div>
+    <div class="form-group">
+      <label for="InputLocation">Location</label>
+      <input [(ngModel)]="device.location" name="location" type="text" class="form-control" id="InputLocation"
+        placeholder="Vị trí">
+    </div>
+    <div class="form-group">
+      <label for="InputLatitude">Latitude</label>
+      <input [(ngModel)]="device.latitude" name="latitude" type="number" class="form-control" id="InputLatitude"
+        placeholder="Vĩ độ">
+    </div>
+    <div class="form-group">
+      <label for="InputLongitude">Longitude</label>
+      <input [(ngModel)]="device.longitude" name="longitude" type="number" class="form-control" id="InputLongitude"
+        placeholder="Kinh độ">
+    </div>
+    <button type="submit" class="btn btn-primary" (click)=onUpdate()>Send</button>
+  </form>
+</div>
