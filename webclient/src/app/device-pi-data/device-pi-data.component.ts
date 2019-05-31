@@ -14,12 +14,12 @@ export class DevicePiDataComponent implements OnInit {
   private piDatas: any;
   public chart: Chart;
 
-  private temperatures = Array<any>();
-  private humidities = Array<any>();
-  private labels = Array<any>();
+  private temperatures = Array<number>();
+  private humidities = Array<number>();
+  private labels = Array<string>();
 
   constructor(private _PiDataService: PiDataService,
-              private route: ActivatedRoute) { 
+              private route: ActivatedRoute) {
                 this.chart = {
                   labels: [],
                   chartsData: [{
@@ -34,14 +34,14 @@ export class DevicePiDataComponent implements OnInit {
     await this._PiDataService.getDevicePiData(id).then(piData => {
       this.piDatas = piData;
     })
-    console.log(this.piDatas)
-    
+    // console.log(this.piDatas)
+
     await this.piDatas.forEach(data => {
       this.temperatures.push(data.temperature);
       this.humidities.push(data.humidity);
       this.labels.push(data.created_at)
     });
-    console.log(this.labels)
+    // console.log(this.labels)
     this.chart =  {
       labels: this.labels,
       chartsData: [
@@ -54,7 +54,7 @@ export class DevicePiDataComponent implements OnInit {
         }
       ]
     }
-    console.log(this.chart)
+    // console.log(this.chart)
   }
 
 }

@@ -10,54 +10,94 @@ export class LineChartComponent implements OnInit, OnChanges {
 
   @Input() chart: Chart;
 
-  private labels: string[];
-  private chartData: ChartData[];
+  // private labels: string[];
+  // private chartData: ChartData;
+  private Chart: Chart;
+  private CHART: Chart;
 
   constructor() {
-    // this.chart = {
-    //   labels: null,
-    //   chartsData: [{
-    //     label: '',
-    //     data: null
-    //   }]
-    // }
+    this.Chart = {
+      labels: [],
+      chartsData: [{
+        label: '',
+        data: []
+      }]
+    }
+    // console.log(this.Chart);
+    this.CHART = {
+      labels: [],
+      chartsData: [{
+        label: '',
+        data: []
+      }]
+    }
+
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('changes', changes);
+    // console.log('changes', changes);
+    // this.chart = changes.chart.currentValue;
     // console.log(this.chart);
-    // this.chart = changes.chart;
-    console.log(changes.chart.currentValue)
-    this.labels = changes.chart.currentValue.labels;
-    this.chartData = changes.chart.currentValue.chartsData
-    console.log(this.labels)
-    console.log(this.chartData)
+    // console.log(this.chart.chartsData[0]);
+    // this.chartData = this.chart.chartsData[1];
+    // console.log(changes.chart.currentValue)
+    this.Chart.labels = changes.chart.currentValue.labels;
+    this.Chart.chartsData = changes.chart.currentValue.chartsData;
+    console.log(this.Chart.chartsData);
+    console.log(this.chartData);
+
+
+    this.CHART.labels = changes.chart.currentValue.labels;
+    this.CHART.chartsData = [
+      {
+        label: changes.chart.currentValue.chartsData[0].label,
+        data: changes.chart.currentValue.chartsData[0].data
+      },
+      {
+        label: changes.chart.currentValue.chartsData[1].label,
+        data: changes.chart.currentValue.chartsData[1].data
+      }
+    ]
+    console.log(this.CHART.chartsData);
+
+    if(JSON.stringify(this.Chart.chartsData) === JSON.stringify(this.chartData)) {
+      console.log(true);
+    }
+    else console.log(false);
+
+    // console.log(JSON.stringify(changes.chart.currentValue.labels));
+    // console.log(JSON.stringify(JSON.stringify(this.labels)));
+    // console.log(JSON.stringify(this.Chart.chartsData));
+    // console.log(JSON.stringify(JSON.stringify(this.chartData)));
+
+    this.labels;
+    // this.chartData = this.Chart.chartsData;
+    // console.log(this.labels);
+    // console.log(this.chartData)
   }
 
-  async ngOnInit() {
-    // console.log('hello')
-    // console.log(this.chart);
-    // this.labels = this.chart.labels;
-    // this.chartData = this.chart.chartsData
+  ngOnInit() {
+    // console.log(this.labels);
+    // console.log(this.chartData);
   }
 
   chartOptions = {
     responsive: true    // THIS WILL MAKE THE CHART RESPONSIVE (VISIBLE IN ANY DEVICE).
   }
 
-  // labels =  ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+  labels: string[] =  ['2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z'];
 
-  // // STATIC DATA FOR THE CHART IN JSON FORMAT.
-  // chartData = [
-  //   {
-  //     label: '1st Year',
-  //     data: [21, 56, 4, 31, 45, 15, 57, 61, 9, 17, 24, 59]
-  //   },
-  //   {
-  //     label: '2nd Year',
-  //     data: [47, 9, 28, 54, 77, 51, 24]
-  //   }
-  // ];
+  // STATIC DATA FOR THE CHART IN JSON FORMAT.
+  chartData: ChartData[] = [
+    {
+      label: 'temperature',
+      data: [3.9, 3.9, 3.3, 3.9, 2, 2, 1.4, 3.9, 4.3, 4.3]
+    },
+    {
+      label: 'humidity',
+      data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    }
+  ];
 
 
   // CHART COLOR.
