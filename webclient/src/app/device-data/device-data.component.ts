@@ -32,9 +32,9 @@ export class DeviceDataComponent implements OnInit {
     this.device = await this._DeviceService.getDevice(this.id)
   }
 
-  onUpdate(){
-    this._DeviceService.updateDevice(this.id, this.device)
-    this._DeviceService.getDevices();
+  async onUpdate(){
+    await this._DeviceService.updateDevice(this.id, this.device)
+    await this._DeviceService.getDevices();
     this.location.back();
   }
 

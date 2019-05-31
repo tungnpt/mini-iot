@@ -26,10 +26,10 @@ export class NewDeviceComponent implements OnInit {
   ngOnInit() {
   }
 
-  saveDevice(){
+  async saveDevice(){
     console.log(this.device)
-    this._DeviceService.createDevice(this.device);
-    this._DeviceService.getDevices();
+    await this._DeviceService.createDevice(this.device);
+    await this._DeviceService.getDevices();
     this.location.back();
   }
 
