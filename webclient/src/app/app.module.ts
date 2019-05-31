@@ -16,6 +16,7 @@ import { NewDeviceComponent } from './new-device/new-device.component';
 import { DevicePiDataComponent } from './device-pi-data/device-pi-data.component'
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { LineChartComponent } from './device-pi-data/line-chart/line-chart.component';
+import { UiSwitchModule } from 'ngx-ui-switch';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { LineChartComponent } from './device-pi-data/line-chart/line-chart.compo
     HttpModule,
     FormsModule,
     ChartsModule,
+    UiSwitchModule
   ],
   providers: [
     DeviceService,

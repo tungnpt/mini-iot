@@ -12,4 +12,13 @@ export class NavBarComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSearch(e: Event){
+    console.log(e)
+
+  }
+
+  onLight(e: Event){
+    console.log(e)
+  }
+
 }

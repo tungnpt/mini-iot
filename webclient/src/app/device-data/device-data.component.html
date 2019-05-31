@@ -26,6 +26,7 @@
       <input [(ngModel)]="device.longitude" name="longitude" type="number" class="form-control" id="InputLongitude"
         placeholder="Kinh độ">
     </div>
-    <button type="submit" class="btn btn-primary" (click)=onUpdate()>Send</button>
+    <button type="submit" class="btn btn-primary" (click)="onUpdate()">Update</button>
+    <button type="submit" class="btn btn-secondary" (click)="location.back()">Cancel</button>
   </form>
 </div>
