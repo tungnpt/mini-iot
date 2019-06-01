@@ -64,21 +64,11 @@ export class LineChartComponent implements OnInit, OnChanges {
       console.log(true);
     }
     else console.log(false);
-
-    // console.log(JSON.stringify(changes.chart.currentValue.labels));
-    // console.log(JSON.stringify(JSON.stringify(this.labels)));
-    // console.log(JSON.stringify(this.Chart.chartsData));
-    // console.log(JSON.stringify(JSON.stringify(this.chartData)));
-
     this.labels;
-    // this.chartData = this.Chart.chartsData;
-    // console.log(this.labels);
-    // console.log(this.chartData)
+
   }
 
   ngOnInit() {
-    // console.log(this.labels);
-    // console.log(this.chartData);
   }
 
   chartOptions = {
