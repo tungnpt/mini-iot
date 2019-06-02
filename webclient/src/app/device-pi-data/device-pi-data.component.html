@@ -7,6 +7,31 @@
     <li>{{piData._id}}</li>
   </ul>
 </div> -->
-<div class="container">
-  <app-line-chart [chart]="chart"></app-line-chart>
+
+<agm-map
+  [latitude]="device.latitude"
+  [longitude]="device.longitude"
+  [zoom]="zoom"
+  [disableDefaultUI]="false"
+  [zoomControl]="false">
+
+  <agm-marker
+      [latitude]="device.latitude"
+      [longitude]="device.longitude"
+      [markerDraggable]="false">
+  </agm-marker>
+
+</agm-map>
+
+<div style="flex: auto; margin-top: 20px" class="row">
+  <div class="col">
+    <span style="padding: 0px 40px">Latitude</span><input type="number" [(ngModel)]="device.latitude" readonly>
+  </div>
+  <div class="col">
+    <span style="padding: 0px 40px">Longitude</span><input type="number" [(ngModel)]="device.longitude" readonly>
+  </div>
+</div>
+
+<div style="margin-top: 50px">
+    <app-line-chart [chart]="chart"></app-line-chart>
 </div>

@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+.pt-60px {
+  padding-top: 60px;
+}
+
+.pb-40px {
+  padding-bottom: 40px;
+}
+
+agm-map {
+  height: 300px;
+}

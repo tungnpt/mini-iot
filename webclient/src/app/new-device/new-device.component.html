@@ -22,6 +22,24 @@
         <input [(ngModel)]="device.longitude" name="longitude" type="number" class="form-control" id="inputLongitude" placeholder="Kinh độ nè">
       </div>
     </div>
-    <button type="submit" class="btn btn-primary" (click)="saveDevice()">Lưu</button>
+
+    <agm-map
+      [latitude]="device.latitude"
+      [longitude]="device.longitude"
+      [zoom]="zoom"
+      [disableDefaultUI]="false"
+      [zoomControl]="false"
+      (mapClick)="mapClicked($event)">
+
+      <agm-marker
+          [latitude]="device.latitude"
+          [longitude]="device.longitude"
+          [markerDraggable]="true"
+          (dragEnd)="markerDragEnd($event)">
+      </agm-marker>
+
+    </agm-map>
+
+    <button type="submit" class="btn btn-primary" (click)="saveDevice()" style="margin-top: 20px; float: right" >Lưu</button>
   </form>
 </div>

@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule }     from './app-routing.module';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -34,7 +35,10 @@ import { UiSwitchModule } from 'ngx-ui-switch';
     HttpModule,
     FormsModule,
     ChartsModule,
-    UiSwitchModule
+    UiSwitchModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAt1DtWCT6XzKgrE5Xs2iPuLniYjzh92GE'
+    })
   ],
   providers: [
     DeviceService,

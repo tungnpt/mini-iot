@@ -23,7 +23,7 @@ export class LineChartComponent implements OnInit, OnChanges {
         data: []
       }]
     }
-    // console.log(this.Chart);
+
     this.CHART = {
       labels: [],
       chartsData: [{
@@ -35,37 +35,25 @@ export class LineChartComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+
     // console.log('changes', changes);
     // this.chart = changes.chart.currentValue;
-    // console.log(this.chart);
-    // console.log(this.chart.chartsData[0]);
-    // this.chartData = this.chart.chartsData[1];
-    // console.log(changes.chart.currentValue)
+
+    // Chart error when receive data
+
     this.Chart.labels = changes.chart.currentValue.labels;
     this.Chart.chartsData = changes.chart.currentValue.chartsData;
-    console.log(this.Chart.chartsData);
-    console.log(this.chartData);
 
+    // Chart success when receive data
+    for (let index = 0; index < this.CHART.chartsData.length; index++) {
+      this.CHART.chartsData.pop();
+    }
 
     this.CHART.labels = changes.chart.currentValue.labels;
-    this.CHART.chartsData = [
-      {
-        label: changes.chart.currentValue.chartsData[0].label,
-        data: changes.chart.currentValue.chartsData[0].data
-      },
-      {
-        label: changes.chart.currentValue.chartsData[1].label,
-        data: changes.chart.currentValue.chartsData[1].data
-      }
-    ]
-    console.log(this.CHART.chartsData);
 
-    if(JSON.stringify(this.Chart.chartsData) === JSON.stringify(this.chartData)) {
-      console.log(true);
-    }
-    else console.log(false);
-    this.labels;
-
+    changes.chart.currentValue.chartsData.forEach(element => {
+      this.CHART.chartsData.push(element);
+    });
   }
 
   ngOnInit() {
@@ -75,28 +63,30 @@ export class LineChartComponent implements OnInit, OnChanges {
     responsive: true    // THIS WILL MAKE THE CHART RESPONSIVE (VISIBLE IN ANY DEVICE).
   }
 
-  labels: string[] =  ['2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z'];
+  // MOCKUP DATA
 
-  // STATIC DATA FOR THE CHART IN JSON FORMAT.
-  chartData: ChartData[] = [
-    {
-      label: 'temperature',
-      data: [3.9, 3.9, 3.3, 3.9, 2, 2, 1.4, 3.9, 4.3, 4.3]
-    },
-    {
-      label: 'humidity',
-      data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    }
-  ];
+  // labels: string[] =  ['2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z', '2019-05-29T02:43:32.739Z'];
+
+  // // STATIC DATA FOR THE CHART IN JSON FORMAT.
+  // chartData: ChartData[] = [
+  //   {
+  //     label: 'temperature',
+  //     data: [3.9, 3.9, 3.3, 3.9, 2, 2, 1.4, 3.9, 4.3, 4.3]
+  //   },
+  //   {
+  //     label: 'humidity',
+  //     data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  //   }
+  // ];
 
 
   // CHART COLOR.
   colors = [
     { // 1st Year.
-      backgroundColor: 'rgba(77,83,96,0.2)'
+      backgroundColor: 'rgba(24, 77, 192, 0.2)'
     },
     { // 2nd Year.
-      backgroundColor: 'rgba(30, 169, 224, 0.8)'
+      backgroundColor: 'rgba(235, 72, 72, 0.212)'
     }
   ]
 

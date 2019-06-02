@@ -1,10 +1,10 @@
 export class Device {
     _id?: any;
-    deviceName: String;
-    deviceDescription: String;
-    location: String;
-    latitude: Number;
-    longitude: Number
+    deviceName?: String;
+    deviceDescription?: String;
+    location?: String;
+    latitude?: number;
+    longitude?: number;
 }
 
 export class ChartData {
@@ -15,4 +15,11 @@ export class ChartData {
 export class Chart {
     labels?: string[];
     chartsData?: ChartData[];
+}
+
+export class marker {
+	lat: number;
+	lng: number;
+	label?: string;
+	draggable: boolean;
 }
