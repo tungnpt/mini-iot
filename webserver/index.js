@@ -57,12 +57,21 @@ mongoose.connect(config.mongoPath, err => {
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
 
-server.listen(6969);
+app.use(express.static('./public'));
+
+// server.listen(6969);
+
+const port = process.env.port || 6969;
+
+server.listen(port, err => {
+  if (err) console.log(err);
+  console.log("Server started at port " + port);
+});
 
 app.use("/api/device", deviceRouter);
 app.use("/api/pidata", piDataRouter);
 
-app.get('/', (req, res) => res.send("hello"))
+app.get('/', (req, res) => res.sendFile('./public/index.html'))
 
 // PiData.find().sort({_id: -1}).limit(5).then(piData => console.log(piData));
 
