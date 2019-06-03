@@ -49,7 +49,9 @@ app.use(bodyParser.json());
 //   }
 // );
 
-mongoose.connect(config.mongoPath, err => {
+
+
+mongoose.connect("mongodb+srv://bosstung:bosstung@cluster0-zmsmv.mongodb.net/test", err => {
   if (err) console.error(err);
   else console.log("Database connect successful");
 });
@@ -61,7 +63,7 @@ app.use(express.static('./public'));
 
 // server.listen(6969);
 
-const port = process.env.port || 6969;
+const port = process.env.PORT || 6969;
 
 server.listen(port, err => {
   if (err) console.log(err);
@@ -97,8 +99,12 @@ io.sockets.on('connection', function (socket) {
       socket.emit("rr",doc);
     });
   })
+  socket.on('ledOn', (data) => {
+    console.log(data)
+    io.sockets.emit('led', data);
+  })
   socket.on('disconnect', function(){
     console.log("device disconnect")
   });
-});
+});   
 

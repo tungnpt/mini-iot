@@ -15,5 +15,9 @@
     "nodemon": "^1.19.0",
     "sequelize": "^5.8.6",
     "socket.io": "^2.2.0"
+  },
+  "engines": {
+    "node": "11.0.0",
+    "npm": "6.4.1"
   }
 }

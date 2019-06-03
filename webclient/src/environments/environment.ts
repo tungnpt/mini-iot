@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:6969/api/'
+  apiUrl: 'http://localhost:6969/api/',
+  // apiUrl: `${process.env.BASE_URL}` || 'http://localhost:6969/',
 };
