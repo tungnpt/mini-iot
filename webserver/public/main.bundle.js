@@ -968,6 +968,8 @@ module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NavBarComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_socket_io_client__ = __webpack_require__("../../../../socket.io-client/lib/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_socket_io_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_socket_io_client__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -978,16 +980,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var NavBarComponent = (function () {
     function NavBarComponent() {
+        this.socket = __WEBPACK_IMPORTED_MODULE_1_socket_io_client__("http://localhost:6969");
     }
     NavBarComponent.prototype.ngOnInit = function () {
+        this.socket = __WEBPACK_IMPORTED_MODULE_1_socket_io_client__("http://localhost:6969");
     };
     NavBarComponent.prototype.onSearch = function (e) {
         console.log(e);
     };
     NavBarComponent.prototype.onLight = function (e) {
         console.log(e);
+        if (e) {
+            this.socket.emit('ledOn', "True");
+        }
+        else {
+            this.socket.emit('ledOn', "False");
+        }
     };
     return NavBarComponent;
 }());
@@ -1510,6 +1521,13 @@ webpackContext.id = "../../../../moment/locale recursive ^\\.\\/.*$";
 
 module.exports = __webpack_require__("../../../../../src/main.ts");
 
+
+/***/ }),
+
+/***/ 1:
+/***/ (function(module, exports) {
+
+/* (ignored) */
 
 /***/ })
 
