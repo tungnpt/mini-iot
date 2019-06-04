@@ -1,0 +1,12 @@
+.fixed-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.home {
+  font-size: 18px;
+  font-weight: 600;
+  margin-right: 30px;
+}

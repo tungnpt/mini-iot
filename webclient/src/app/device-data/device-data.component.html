@@ -1,5 +1,5 @@
 <div class="container">
-  <div>Device update</div>
+  <h3 style="margin-bottom: 20px">Edit Device</h3>
   <form>
     <div class="form-group">
       <label for="InputDeviceName">Device Name</label>
@@ -43,8 +43,13 @@
       </agm-marker>
 
     </agm-map>
-
-    <button type="submit" class="btn btn-primary" (click)="onUpdate()">Update</button>
-    <button type="submit" class="btn btn-secondary" (click)="location.back()">Cancel</button>
+    <div style="float: right; margin-top: 20px">
+        <button type="submit" class="btn btn-secondary" (click)="location.back()" style="margin-right: 10px">
+          <span class="fas fa-times" aria-hidden="true"></span> Cancel
+        </button>
+        <button type="submit" class="btn btn-primary" (click)="onUpdate()">
+          <span class="fas fa-sync-alt" aria-hidden="true"></span> Update
+        </button>
+    </div>
   </form>
 </div>

@@ -1,9 +1,15 @@
 <div class="container">
-  <button class="pull-right" type="button" class="btn btn-primary" style="margin: 20px 0" routerLink="/device/add">Thêm thiết bị</button>
-  <div style="margin-bottom: 10px">Danh sách thiết bị</div>
+  <div class="row" style="margin-bottom: 20px">
+      <h3 class="col-6" style="padding: 0 25px;">List Device</h3>
+      <div class="col-6" style="padding: 0 30px">
+          <a class="btn btn-primary pull-right" style="float: right" routerLink="/device/add">
+              <span class="fas fa-plus" aria-hidden="true"></span> Add new Device
+          </a>
+      </div>
+  </div>
   <table class="table">
     <thead>
-      <tr>
+      <tr style="text-align: center">
         <th scope="col">STT</th>
         <th scope="col">Device Name</th>
         <th scope="col">Description</th>
@@ -12,15 +18,21 @@
       </tr>
     </thead>
     <tbody *ngFor="let device of devices; let i = index">
-      <tr>
+      <tr style="text-align: center">
         <th scope="row">{{i+1}}</th>
         <td>{{device.deviceName}}</td>
         <td>{{device.deviceDescription}}</td>
         <td></td>
-        <td>
-          <button type="button" class="btn btn-primary" routerLink="/device/view/{{device._id}}">View</button>
-          <button type="button" class="btn btn-info" routerLink="/device/edit/{{device._id}}">Edit</button>
-          <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#deleteModal">Delete</button>
+        <td style="float: right">
+          <a class="btn btn-primary" routerLink="/device/view/{{device._id}}">
+            <span class="far fa-eye" aria-hidden="true"></span> View
+          </a>
+          <a class="btn btn-info" routerLink="/device/edit/{{device._id}}">
+            <span class="fas fa-pen" aria-hidden="true"></span> Edit
+          </a>
+          <a class="btn btn-warning" data-toggle="modal" data-target="#deleteModal" style="color: white">
+            <span class="fas fa-trash" aria-hidden="true"></span> Delete
+          </a>
 
           <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
@@ -35,8 +47,12 @@
                     Are you sure?
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteDevice(device)">Confirm</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        <span class="fas fa-times" aria-hidden="true"></span> Cancel
+                    </button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteDevice(device)">
+                        <span class="	fas fa-check" aria-hidden="true"></span> Confirm
+                    </button>
                   </div>
                 </div>
               </div>

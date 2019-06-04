@@ -15,7 +15,7 @@ export class DevicePiDataComponent implements OnInit {
   private device: Device;
   private piDatas: any;
   public chart: Chart;
-  private zoom: number = 16;
+  private zoom: number = 14;
   private id = null;
 
   private temperatures = Array<number>();
@@ -34,6 +34,7 @@ export class DevicePiDataComponent implements OnInit {
                 }
 
                 this.device = {
+                  deviceName: '',
                   latitude: null,
                   longitude: null
                 }

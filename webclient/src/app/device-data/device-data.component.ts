@@ -15,7 +15,7 @@ export class DeviceDataComponent implements OnInit {
 
   private device: Device;
   private id = null;
-  private zoom: number = 16;
+  private zoom: number = 14;
 
   constructor(private _DeviceService: DeviceService,
               private route: ActivatedRoute,

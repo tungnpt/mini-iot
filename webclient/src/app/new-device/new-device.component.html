@@ -1,4 +1,5 @@
 <div class="container">
+  <h3 style="margin-bottom: 20px">New Device</h3>
   <form>
     <div class="form-group">
       <label for="inputName">Device Name</label>
@@ -40,6 +41,13 @@
 
     </agm-map>
 
-    <button type="submit" class="btn btn-primary" (click)="saveDevice()" style="margin-top: 20px; float: right" >Lưu</button>
+    <div style="float: right; margin-top: 20px">
+        <button type="submit" class="btn btn-secondary" (click)="location.back()" style="margin-right: 10px">
+            <span class="fas fa-times" aria-hidden="true"></span> Cancel
+          </button>
+        <button type="submit" class="btn btn-primary" (click)="saveDevice()">
+            <span class="fas fa-save" aria-hidden="true"></span> Save
+        </button>
+    </div>
   </form>
 </div>

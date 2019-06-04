@@ -8,6 +8,21 @@
   </ul>
 </div> -->
 
+<h3 style="margin-bottom: 20px">{{device.deviceName}}</h3>
+
+
+<div style="flex: auto; margin: 30px 0 10px" class="row">
+    <div class="col-3">
+      <h5>Device's Location:</h5>
+    </div>
+    <div class="col">
+      <span style="padding-right: 40px">Latitude</span><input type="number" [(ngModel)]="device.latitude" readonly>
+    </div>
+    <div class="col">
+      <span style="padding-right: 40px">Longitude</span><input type="number" [(ngModel)]="device.longitude" readonly>
+    </div>
+</div>
+
 <agm-map
   [latitude]="device.latitude"
   [longitude]="device.longitude"
@@ -23,15 +38,10 @@
 
 </agm-map>
 
-<div style="flex: auto; margin-top: 20px" class="row">
-  <div class="col">
-    <span style="padding: 0px 40px">Latitude</span><input type="number" [(ngModel)]="device.latitude" readonly>
-  </div>
-  <div class="col">
-    <span style="padding: 0px 40px">Longitude</span><input type="number" [(ngModel)]="device.longitude" readonly>
-  </div>
-</div>
-
 <div style="margin-top: 50px">
     <app-line-chart [chart]="chart"></app-line-chart>
 </div>
+
+<button class="btn btn-light" routerLink = "/" style="margin-top: 20px">
+    <span class="fas fa-arrow-left" aria-hidden="true"></span> Go back to Home
+</button>

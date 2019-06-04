@@ -9,7 +9,9 @@ import {environment} from '../../environments/environment'
 })
 export class NavBarComponent implements OnInit {
 
-  private socket = io("http://localhost:6969")
+  private socket = io("http://localhost:6969");
+  private isTurnOn = false;
+  private text = "OFF";
 
   constructor() { }
 
@@ -22,6 +24,10 @@ export class NavBarComponent implements OnInit {
   }
 
   onLight(e: Event){
+    this.isTurnOn = !this.isTurnOn;
+    if(this.isTurnOn) {
+      this.text = "ON";
+    } else { this.text = "OFF"; }
     console.log(e)
     if(e){
       this.socket.emit('ledOn', "True")
