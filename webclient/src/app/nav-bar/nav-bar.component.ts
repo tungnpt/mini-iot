@@ -10,6 +10,7 @@ import {environment} from '../../environments/environment'
 export class NavBarComponent implements OnInit {
 
   private socket = io("http://localhost:6969");
+  // private socket = io("https://project-mini-iot.herokuapp.com");
   private isTurnOn = false;
   private text = "OFF";
 
@@ -17,6 +18,7 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit() {
     this.socket = io("http://localhost:6969")
+    // this.socket = io("https://project-mini-iot.herokuapp.com")
   }
 
   onSearch(e: Event){

@@ -253,7 +253,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/device-data/device-data.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n  <div>Device update</div>\r\n  <form>\r\n    <div class=\"form-group\">\r\n      <label for=\"InputDeviceName\">Device Name</label>\r\n      <input [(ngModel)]=\"device.deviceName\" name=\"deviceName\" type=\"text\" class=\"form-control\" id=\"InputDeviceName\"\r\n        placeholder=\"Tên thiết bị\" autocomplete=\"off\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"InputDeviceDescription\">Device Description</label>\r\n      <input [(ngModel)]=\"device.deviceDescription\" name=\"deviceDescription\" type=\"text\" class=\"form-control\"\r\n        id=\"InputDeviceDescription\" placeholder=\"Mô tả\" autocomplete=\"off\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"InputLocation\">Location</label>\r\n      <input [(ngModel)]=\"device.location\" name=\"location\" type=\"text\" class=\"form-control\" id=\"InputLocation\"\r\n        placeholder=\"Vị trí\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"InputLatitude\">Latitude</label>\r\n      <input [(ngModel)]=\"device.latitude\" name=\"latitude\" type=\"number\" class=\"form-control\" id=\"InputLatitude\"\r\n        placeholder=\"Vĩ độ\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"InputLongitude\">Longitude</label>\r\n      <input [(ngModel)]=\"device.longitude\" name=\"longitude\" type=\"number\" class=\"form-control\" id=\"InputLongitude\"\r\n        placeholder=\"Kinh độ\">\r\n    </div>\r\n\r\n    <agm-map\r\n      [latitude]=\"device.latitude\"\r\n      [longitude]=\"device.longitude\"\r\n      [zoom]=\"zoom\"\r\n      [disableDefaultUI]=\"false\"\r\n      [zoomControl]=\"false\"\r\n      (mapClick)=\"mapClicked($event)\">\r\n\r\n      <agm-marker\r\n          [latitude]=\"device.latitude\"\r\n          [longitude]=\"device.longitude\"\r\n          [markerDraggable]=\"true\"\r\n          (dragEnd)=\"markerDragEnd($event)\">\r\n      </agm-marker>\r\n\r\n    </agm-map>\r\n\r\n    <button type=\"submit\" class=\"btn btn-primary\" (click)=\"onUpdate()\">Update</button>\r\n    <button type=\"submit\" class=\"btn btn-secondary\" (click)=\"location.back()\">Cancel</button>\r\n  </form>\r\n</div>\r\n"
+module.exports = "<div class=\"container\">\r\n  <h3 style=\"margin-bottom: 20px\">Edit Device</h3>\r\n  <form>\r\n    <div class=\"form-group\">\r\n      <label for=\"InputDeviceName\">Device Name</label>\r\n      <input [(ngModel)]=\"device.deviceName\" name=\"deviceName\" type=\"text\" class=\"form-control\" id=\"InputDeviceName\"\r\n        placeholder=\"Tên thiết bị\" autocomplete=\"off\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"InputDeviceDescription\">Device Description</label>\r\n      <input [(ngModel)]=\"device.deviceDescription\" name=\"deviceDescription\" type=\"text\" class=\"form-control\"\r\n        id=\"InputDeviceDescription\" placeholder=\"Mô tả\" autocomplete=\"off\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"InputLocation\">Location</label>\r\n      <input [(ngModel)]=\"device.location\" name=\"location\" type=\"text\" class=\"form-control\" id=\"InputLocation\"\r\n        placeholder=\"Vị trí\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"InputLatitude\">Latitude</label>\r\n      <input [(ngModel)]=\"device.latitude\" name=\"latitude\" type=\"number\" class=\"form-control\" id=\"InputLatitude\"\r\n        placeholder=\"Vĩ độ\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"InputLongitude\">Longitude</label>\r\n      <input [(ngModel)]=\"device.longitude\" name=\"longitude\" type=\"number\" class=\"form-control\" id=\"InputLongitude\"\r\n        placeholder=\"Kinh độ\">\r\n    </div>\r\n\r\n    <agm-map\r\n      [latitude]=\"device.latitude\"\r\n      [longitude]=\"device.longitude\"\r\n      [zoom]=\"zoom\"\r\n      [disableDefaultUI]=\"false\"\r\n      [zoomControl]=\"false\"\r\n      (mapClick)=\"mapClicked($event)\">\r\n\r\n      <agm-marker\r\n          [latitude]=\"device.latitude\"\r\n          [longitude]=\"device.longitude\"\r\n          [markerDraggable]=\"true\"\r\n          (dragEnd)=\"markerDragEnd($event)\">\r\n      </agm-marker>\r\n\r\n    </agm-map>\r\n    <div style=\"float: right; margin-top: 20px\">\r\n        <button type=\"submit\" class=\"btn btn-secondary\" (click)=\"location.back()\" style=\"margin-right: 10px\">\r\n          <span class=\"fas fa-times\" aria-hidden=\"true\"></span> Cancel\r\n        </button>\r\n        <button type=\"submit\" class=\"btn btn-primary\" (click)=\"onUpdate()\">\r\n          <span class=\"fas fa-sync-alt\" aria-hidden=\"true\"></span> Update\r\n        </button>\r\n    </div>\r\n  </form>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -320,7 +320,7 @@ var DeviceDataComponent = (function () {
         this.route = route;
         this.location = location;
         this.id = null;
-        this.zoom = 16;
+        this.zoom = 14;
         this.device = {
             deviceName: null,
             deviceDescription: null,
@@ -410,7 +410,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/device-pi-data/device-pi-data.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <div class=\"container\">\r\n  <ul *ngFor=\"let piData of piDatas\">\r\n    <li>{{piData.created_at}}</li>\r\n    <li>{{piData.device}}</li>\r\n    <li>{{piData.humidity}}</li>\r\n    <li>{{piData.temperature}}</li>\r\n    <li>{{piData._id}}</li>\r\n  </ul>\r\n</div> -->\r\n\r\n<agm-map\r\n  [latitude]=\"device.latitude\"\r\n  [longitude]=\"device.longitude\"\r\n  [zoom]=\"zoom\"\r\n  [disableDefaultUI]=\"false\"\r\n  [zoomControl]=\"false\">\r\n\r\n  <agm-marker\r\n      [latitude]=\"device.latitude\"\r\n      [longitude]=\"device.longitude\"\r\n      [markerDraggable]=\"false\">\r\n  </agm-marker>\r\n\r\n</agm-map>\r\n\r\n<div style=\"flex: auto; margin-top: 20px\" class=\"row\">\r\n  <div class=\"col\">\r\n    <span style=\"padding: 0px 40px\">Latitude</span><input type=\"number\" [(ngModel)]=\"device.latitude\" readonly>\r\n  </div>\r\n  <div class=\"col\">\r\n    <span style=\"padding: 0px 40px\">Longitude</span><input type=\"number\" [(ngModel)]=\"device.longitude\" readonly>\r\n  </div>\r\n</div>\r\n\r\n<div style=\"margin-top: 50px\">\r\n    <app-line-chart [chart]=\"chart\"></app-line-chart>\r\n</div>\r\n"
+module.exports = "<!-- <div class=\"container\">\r\n  <ul *ngFor=\"let piData of piDatas\">\r\n    <li>{{piData.created_at}}</li>\r\n    <li>{{piData.device}}</li>\r\n    <li>{{piData.humidity}}</li>\r\n    <li>{{piData.temperature}}</li>\r\n    <li>{{piData._id}}</li>\r\n  </ul>\r\n</div> -->\r\n\r\n<h3 style=\"margin-bottom: 20px\">{{device.deviceName}}</h3>\r\n\r\n\r\n<div style=\"flex: auto; margin: 30px 0 10px\" class=\"row\">\r\n    <div class=\"col-3\">\r\n      <h5>Device's Location:</h5>\r\n    </div>\r\n    <div class=\"col\">\r\n      <span style=\"padding-right: 40px\">Latitude</span><input type=\"number\" [(ngModel)]=\"device.latitude\" readonly>\r\n    </div>\r\n    <div class=\"col\">\r\n      <span style=\"padding-right: 40px\">Longitude</span><input type=\"number\" [(ngModel)]=\"device.longitude\" readonly>\r\n    </div>\r\n</div>\r\n\r\n<agm-map\r\n  [latitude]=\"device.latitude\"\r\n  [longitude]=\"device.longitude\"\r\n  [zoom]=\"zoom\"\r\n  [disableDefaultUI]=\"false\"\r\n  [zoomControl]=\"false\">\r\n\r\n  <agm-marker\r\n      [latitude]=\"device.latitude\"\r\n      [longitude]=\"device.longitude\"\r\n      [markerDraggable]=\"false\">\r\n  </agm-marker>\r\n\r\n</agm-map>\r\n\r\n<div style=\"margin-top: 50px\">\r\n    <app-line-chart [chart]=\"chart\"></app-line-chart>\r\n</div>\r\n\r\n<button class=\"btn btn-light\" routerLink = \"/\" style=\"margin-top: 20px\">\r\n    <span class=\"fas fa-arrow-left\" aria-hidden=\"true\"></span> Go back to Home\r\n</button>\r\n"
 
 /***/ }),
 
@@ -476,7 +476,7 @@ var DevicePiDataComponent = (function () {
         this._PiDataService = _PiDataService;
         this.route = route;
         this._DeviceService = _DeviceService;
-        this.zoom = 16;
+        this.zoom = 14;
         this.id = null;
         this.temperatures = Array();
         this.humidities = Array();
@@ -489,6 +489,7 @@ var DevicePiDataComponent = (function () {
                 }]
         };
         this.device = {
+            deviceName: '',
             latitude: null,
             longitude: null
         };
@@ -825,7 +826,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n  <button class=\"pull-right\" type=\"button\" class=\"btn btn-primary\" style=\"margin: 20px 0\" routerLink=\"/device/add\">Thêm thiết bị</button>\r\n  <div style=\"margin-bottom: 10px\">Danh sách thiết bị</div>\r\n  <table class=\"table\">\r\n    <thead>\r\n      <tr>\r\n        <th scope=\"col\">STT</th>\r\n        <th scope=\"col\">Device Name</th>\r\n        <th scope=\"col\">Description</th>\r\n        <th scope=\"col\">Operation</th>\r\n        <th scope=\"col\">Option</th>\r\n      </tr>\r\n    </thead>\r\n    <tbody *ngFor=\"let device of devices; let i = index\">\r\n      <tr>\r\n        <th scope=\"row\">{{i+1}}</th>\r\n        <td>{{device.deviceName}}</td>\r\n        <td>{{device.deviceDescription}}</td>\r\n        <td></td>\r\n        <td>\r\n          <button type=\"button\" class=\"btn btn-primary\" routerLink=\"/device/view/{{device._id}}\">View</button>\r\n          <button type=\"button\" class=\"btn btn-info\" routerLink=\"/device/edit/{{device._id}}\">Edit</button>\r\n          <button type=\"button\" class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#deleteModal\">Delete</button>\r\n\r\n          <div class=\"modal fade\" id=\"deleteModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"deleteModalLabel\" aria-hidden=\"true\">\r\n              <div class=\"modal-dialog\" role=\"document\">\r\n                <div class=\"modal-content\">\r\n                  <div class=\"modal-header\">\r\n                    <h5 class=\"modal-title\" id=\"deleteModalLabel\">Delete this device?</h5>\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n                      <span aria-hidden=\"true\">&times;</span>\r\n                    </button>\r\n                  </div>\r\n                  <div class=\"modal-body\">\r\n                    Are you sure?\r\n                  </div>\r\n                  <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Cancel</button>\r\n                    <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" (click)=\"deleteDevice(device)\">Confirm</button>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n        </td>\r\n      </tr>\r\n    </tbody>\r\n  </table>\r\n\r\n  <agm-map\r\n    [latitude]=\"lat\"\r\n    [longitude]=\"lng\"\r\n    [zoom]=\"zoom\"\r\n    [disableDefaultUI]=\"false\"\r\n    [zoomControl]=\"false\"\r\n    (mapClick)=\"mapClicked($event)\">\r\n\r\n    <agm-marker\r\n        [latitude]=\"lat\"\r\n        [longitude]=\"lng\"\r\n        [markerDraggable]=\"true\">\r\n    </agm-marker>\r\n\r\n    <agm-circle [latitude]=\"lat + 0.3\" [longitude]=\"lng\"\r\n        [radius]=\"5000\"\r\n        [fillColor]=\"'red'\"\r\n        [circleDraggable]=\"true\"\r\n        [editable]=\"true\">\r\n    </agm-circle>\r\n\r\n  </agm-map>\r\n\r\n</div>\r\n"
+module.exports = "<div class=\"container\">\r\n  <div class=\"row\" style=\"margin-bottom: 20px\">\r\n      <h3 class=\"col-6\" style=\"padding: 0 25px;\">List Device</h3>\r\n      <div class=\"col-6\" style=\"padding: 0 30px\">\r\n          <a class=\"btn btn-primary pull-right\" style=\"float: right\" routerLink=\"/device/add\">\r\n              <span class=\"fas fa-plus\" aria-hidden=\"true\"></span> Add new Device\r\n          </a>\r\n      </div>\r\n  </div>\r\n  <table class=\"table\">\r\n    <thead>\r\n      <tr style=\"text-align: center\">\r\n        <th scope=\"col\">STT</th>\r\n        <th scope=\"col\">Device Name</th>\r\n        <th scope=\"col\">Description</th>\r\n        <th scope=\"col\">Operation</th>\r\n        <th scope=\"col\">Option</th>\r\n      </tr>\r\n    </thead>\r\n    <tbody *ngFor=\"let device of devices; let i = index\">\r\n      <tr style=\"text-align: center\">\r\n        <th scope=\"row\">{{i+1}}</th>\r\n        <td>{{device.deviceName}}</td>\r\n        <td>{{device.deviceDescription}}</td>\r\n        <td></td>\r\n        <td style=\"float: right\">\r\n          <a class=\"btn btn-primary\" routerLink=\"/device/view/{{device._id}}\">\r\n            <span class=\"far fa-eye\" aria-hidden=\"true\"></span> View\r\n          </a>\r\n          <a class=\"btn btn-info\" routerLink=\"/device/edit/{{device._id}}\">\r\n            <span class=\"fas fa-pen\" aria-hidden=\"true\"></span> Edit\r\n          </a>\r\n          <a class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#deleteModal\" style=\"color: white\" (click)=\"deleteDevice(device)\">\r\n            <span class=\"fas fa-trash\" aria-hidden=\"true\"></span> Delete\r\n          </a>\r\n\r\n          <div class=\"modal fade\" id=\"deleteModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"deleteModalLabel\" aria-hidden=\"true\">\r\n              <div class=\"modal-dialog\" role=\"document\">\r\n                <div class=\"modal-content\">\r\n                  <div class=\"modal-header\">\r\n                    <h5 class=\"modal-title\" id=\"deleteModalLabel\">Delete this device?</h5>\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n                      <span aria-hidden=\"true\">&times;</span>\r\n                    </button>\r\n                  </div>\r\n                  <div class=\"modal-body\">\r\n                    Are you sure?\r\n                  </div>\r\n                  <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">\r\n                        <span class=\"fas fa-times\" aria-hidden=\"true\"></span> Cancel\r\n                    </button>\r\n                    <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" (click)=\"delete(choosedDevice)\">\r\n                        <span class=\"\tfas fa-check\" aria-hidden=\"true\"></span> Confirm\r\n                    </button>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n        </td>\r\n      </tr>\r\n    </tbody>\r\n  </table>\r\n\r\n  <agm-map\r\n    [latitude]=\"lat\"\r\n    [longitude]=\"lng\"\r\n    [zoom]=\"zoom\"\r\n    [disableDefaultUI]=\"false\"\r\n    [zoomControl]=\"false\"\r\n    (mapClick)=\"mapClicked($event)\">\r\n\r\n    <agm-marker\r\n        [latitude]=\"lat\"\r\n        [longitude]=\"lng\"\r\n        [markerDraggable]=\"true\">\r\n    </agm-marker>\r\n\r\n    <agm-circle [latitude]=\"lat + 0.3\" [longitude]=\"lng\"\r\n        [radius]=\"5000\"\r\n        [fillColor]=\"'red'\"\r\n        [circleDraggable]=\"true\"\r\n        [editable]=\"true\">\r\n    </agm-circle>\r\n\r\n  </agm-map>\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -907,6 +908,11 @@ var HomeComponent = (function () {
     };
     HomeComponent.prototype.deleteDevice = function (device) {
         console.log(device);
+        this.choosedDevice = device;
+        // this.devices = this.devices.filter(d => d !== device)
+        // this._DeviceService.deleteDevice(device._id)
+    };
+    HomeComponent.prototype.delete = function (device) {
         this.devices = this.devices.filter(function (d) { return d !== device; });
         this._DeviceService.deleteDevice(device._id);
     };
@@ -945,7 +951,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".fixed-navbar {\r\n  position: fixed;\r\n  top: 0;\r\n  width: 100%;\r\n  z-index: 1;\r\n}\r\n\r\n.home {\r\n  font-size: 18px;\r\n  font-weight: 600;\r\n  margin-right: 30px;\r\n}\r\n", ""]);
 
 // exports
 
@@ -958,7 +964,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/nav-bar/nav-bar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <a class=\"navbar-brand\" routerLink = \"/\">Mini IOT</a>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" routerLink = \"/\">Home</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" href=\"#\">Link</a>\n      </li>\n      <ui-switch (change)=\"onLight($event)\" defaultBgColor=\"red\"></ui-switch>\n    </ul>\n    <form class=\"form-inline my-2 my-lg-0\">\n      <input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\" (input) = \"onSearch($event)\">\n      <button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Search</button>\n    </form>\n  </div>\n</nav>"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light fixed-navbar\">\r\n  <div class=\"container\">\r\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n      <span class=\"navbar-toggler-icon\"></span>\r\n    </button>\r\n\r\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\" style=\"padding: 10px 0;\">\r\n      <ul class=\"navbar-nav mr-auto\">\r\n        <li class=\"nav-item active\">\r\n          <a class=\"nav-link home\" routerLink = \"/\">Home</a>\r\n        </li>\r\n        <li class=\"nav-item\" style=\"position: relative;\">\r\n          <a class=\"nav-link\">Light: {{text}}</a>\r\n          <div style=\"position: absolute; left: 90px; top: 5px\">\r\n              <ui-switch\r\n                  (change)=\"onLight($event)\"\r\n                  defaultBgColor=\"red\">\r\n              </ui-switch>\r\n          </div>\r\n        </li>\r\n      </ul>\r\n      <form class=\"form-inline my-2 my-lg-0\">\r\n        <input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\" (input) = \"onSearch($event)\">\r\n        <button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">\r\n          <span class=\"fas fa-search\" aria-hidden=\"true\"></span> Search\r\n        </button>\r\n      </form>\r\n    </div>\r\n  </div>\r\n</nav>\r\n"
 
 /***/ }),
 
@@ -984,14 +990,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var NavBarComponent = (function () {
     function NavBarComponent() {
         this.socket = __WEBPACK_IMPORTED_MODULE_1_socket_io_client__("http://localhost:6969");
+        // private socket = io("https://project-mini-iot.herokuapp.com");
+        this.isTurnOn = false;
+        this.text = "OFF";
     }
     NavBarComponent.prototype.ngOnInit = function () {
         this.socket = __WEBPACK_IMPORTED_MODULE_1_socket_io_client__("http://localhost:6969");
+        // this.socket = io("https://project-mini-iot.herokuapp.com")
     };
     NavBarComponent.prototype.onSearch = function (e) {
         console.log(e);
     };
     NavBarComponent.prototype.onLight = function (e) {
+        this.isTurnOn = !this.isTurnOn;
+        if (this.isTurnOn) {
+            this.text = "ON";
+        }
+        else {
+            this.text = "OFF";
+        }
         console.log(e);
         if (e) {
             this.socket.emit('ledOn', "True");
@@ -1036,7 +1053,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/new-device/new-device.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n  <form>\r\n    <div class=\"form-group\">\r\n      <label for=\"inputName\">Device Name</label>\r\n      <input [(ngModel)]=\"device.deviceName\" name=\"deviceName\" type=\"text\" class=\"form-control\" id=\"inputName\" placeholder=\"Tên gì, viết vào đây\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"inputDescription\">Device Description</label>\r\n      <input [(ngModel)]=\"device.deviceDescription\" name=\"deviceDescription\" type=\"text\" class=\"form-control\" id=\"inputDescription\" placeholder=\"Một vài cái mô tả\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"inputLocation\">Location</label>\r\n      <input [(ngModel)]=\"device.location\" name=\"location\" type=\"text\" class=\"form-control\" id=\"inputLocation\" placeholder=\"Địa điểm nè\">\r\n    </div>\r\n    <div class=\"form-row\">\r\n      <div class=\"form-group col-md-6\">\r\n        <label for=\"inputLatitude\">Latitude</label>\r\n        <input [(ngModel)]=\"device.latitude\" name=\"latitude\" type=\"number\" class=\"form-control\" id=\"inputLatitude\" placeholder=\"Vĩ độ nè\">\r\n      </div>\r\n      <div class=\"form-group col-md-6\">\r\n        <label for=\"inputLongitude\">Longitude</label>\r\n        <input [(ngModel)]=\"device.longitude\" name=\"longitude\" type=\"number\" class=\"form-control\" id=\"inputLongitude\" placeholder=\"Kinh độ nè\">\r\n      </div>\r\n    </div>\r\n\r\n    <agm-map\r\n      [latitude]=\"device.latitude\"\r\n      [longitude]=\"device.longitude\"\r\n      [zoom]=\"zoom\"\r\n      [disableDefaultUI]=\"false\"\r\n      [zoomControl]=\"false\"\r\n      (mapClick)=\"mapClicked($event)\">\r\n\r\n      <agm-marker\r\n          [latitude]=\"device.latitude\"\r\n          [longitude]=\"device.longitude\"\r\n          [markerDraggable]=\"true\"\r\n          (dragEnd)=\"markerDragEnd($event)\">\r\n      </agm-marker>\r\n\r\n    </agm-map>\r\n\r\n    <button type=\"submit\" class=\"btn btn-primary\" (click)=\"saveDevice()\" style=\"margin-top: 20px; float: right\" >Lưu</button>\r\n  </form>\r\n</div>\r\n"
+module.exports = "<div class=\"container\">\r\n  <h3 style=\"margin-bottom: 20px\">New Device</h3>\r\n  <form>\r\n    <div class=\"form-group\">\r\n      <label for=\"inputName\">Device Name</label>\r\n      <input [(ngModel)]=\"device.deviceName\" name=\"deviceName\" type=\"text\" class=\"form-control\" id=\"inputName\" placeholder=\"Tên gì, viết vào đây\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"inputDescription\">Device Description</label>\r\n      <input [(ngModel)]=\"device.deviceDescription\" name=\"deviceDescription\" type=\"text\" class=\"form-control\" id=\"inputDescription\" placeholder=\"Một vài cái mô tả\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"inputLocation\">Location</label>\r\n      <input [(ngModel)]=\"device.location\" name=\"location\" type=\"text\" class=\"form-control\" id=\"inputLocation\" placeholder=\"Địa điểm nè\">\r\n    </div>\r\n    <div class=\"form-row\">\r\n      <div class=\"form-group col-md-6\">\r\n        <label for=\"inputLatitude\">Latitude</label>\r\n        <input [(ngModel)]=\"device.latitude\" name=\"latitude\" type=\"number\" class=\"form-control\" id=\"inputLatitude\" placeholder=\"Vĩ độ nè\">\r\n      </div>\r\n      <div class=\"form-group col-md-6\">\r\n        <label for=\"inputLongitude\">Longitude</label>\r\n        <input [(ngModel)]=\"device.longitude\" name=\"longitude\" type=\"number\" class=\"form-control\" id=\"inputLongitude\" placeholder=\"Kinh độ nè\">\r\n      </div>\r\n    </div>\r\n\r\n    <agm-map\r\n      [latitude]=\"device.latitude\"\r\n      [longitude]=\"device.longitude\"\r\n      [zoom]=\"zoom\"\r\n      [disableDefaultUI]=\"false\"\r\n      [zoomControl]=\"false\"\r\n      (mapClick)=\"mapClicked($event)\">\r\n\r\n      <agm-marker\r\n          [latitude]=\"device.latitude\"\r\n          [longitude]=\"device.longitude\"\r\n          [markerDraggable]=\"true\"\r\n          (dragEnd)=\"markerDragEnd($event)\">\r\n      </agm-marker>\r\n\r\n    </agm-map>\r\n\r\n    <div style=\"float: right; margin-top: 20px\">\r\n        <button type=\"submit\" class=\"btn btn-secondary\" (click)=\"location.back()\" style=\"margin-right: 10px\">\r\n            <span class=\"fas fa-times\" aria-hidden=\"true\"></span> Cancel\r\n          </button>\r\n        <button type=\"submit\" class=\"btn btn-primary\" (click)=\"saveDevice()\">\r\n            <span class=\"fas fa-save\" aria-hidden=\"true\"></span> Save\r\n        </button>\r\n    </div>\r\n  </form>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1209,9 +1226,14 @@ var _a;
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
+// The file contents for the current environment will overwrite these during build.
+// The build system defaults to the dev environment which uses `environment.ts`, but if you do
+// `ng build --env=prod` then `environment.prod.ts` will be used instead.
+// The list of which env maps to which file can be found in `.angular-cli.json`.
+// The file contents for the current environment will overwrite these during build.
 var environment = {
-    production: true,
-    apiUrl: 'http://localhost:6969/api/'
+    production: false,
+    apiUrl: 'http://localhost:6969/api/',
 };
 //# sourceMappingURL=environment.js.map
 

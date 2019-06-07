@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-
 const piDataSchema = new Schema({
   device: {
     type: mongoose.Schema.ObjectId,
@@ -16,10 +15,5 @@ const piDataSchema = new Schema({
   },
   status: Number
 });
-
-
 const PiData = mongoose.model("PiData", piDataSchema);
-
-
-
 module.exports = PiData;

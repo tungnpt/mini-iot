@@ -1,28 +1,21 @@
+// Khai báo các Module, Model, Route sử dụng trong 
 const express = require("express");
 const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 const PiData = require("./api/pidatas/model");
 const Device = require("./api/devices/model")
-
 const config = require("./config-local.json");
-
-
 const app = express();
-
 const deviceRouter = require("./api/devices/router")
 const piDataRouter = require("./api/pidatas/router")
 
+// Tạo middleware cho phép CORS (request đến một port khác)
 app.use((req, res, next) => {
   res.setHeader("X-Frame-Options", "ALLOWALL");
   res.setHeader(
     "Access-Control-Allow-Methods",
     "POST, GET, PUT, DELETE, OPTIONS"
   );
-
-  // const acceptedOrigins =  ["http://localhost:3000", "http://localhost:6969"];
-  // if (req.headers.origin && acceptedOrigins.includes(req.headers.origin)) {
-  //     res.setHeader("Access-Control-Allow-Credentials", req.headers.origin);
-  // }
   if (req.headers.origin) {
     res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
   }
@@ -36,62 +29,50 @@ app.use((req, res, next) => {
   next();
 });
 
+// Sử dụng mô đun bodyParse để nhận request body dưới dạng Json
 app.use(bodyParser.json());
-
-// mongoose.connect("mongodb://tank:123123qwe@ds135726.mlab.com:35726/ecommerce", {
-//   useNewUrlParser: true,
-//   useCreateIndex: true
-// })
-//   .then(() => {
-//     console.log('\x1b[36m%s\x1b[32m', "Connect to mongoDB successfully!");
-//   }).catch(err => {
-//     console.log("Cannot connect to mongoDB: \n", err);
-//   }
-// );
-
-
-
+// Connect với database qua đường dẫn trong Connect
 mongoose.connect("mongodb+srv://bosstung:bosstung@cluster0-zmsmv.mongodb.net/test", err => {
   if (err) console.error(err);
   else console.log("Database connect successful");
 });
 
+// Khởi tạo server và Socketio
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
 
+// Sau khi ReactJS được build và bundle lại một phiên bản nhẹ hơn, server sẽ access
+// vào front-end thông qua một folder static tại ./public
 app.use(express.static('./public'));
 
-// server.listen(6969);
-
+// server lắng nghe tại process enviroment hoặc mặc định ở port 6969
 const port = process.env.PORT || 6969;
-
 server.listen(port, err => {
   if (err) console.log(err);
   console.log("Server started at port " + port);
 });
 
+// Khởi tạo Route Device để xử lý các request về Thiết bị
 app.use("/api/device", deviceRouter);
+// Khởi tạo Route Device để xử lý các request về nhiệt độ, độ ẩm của thiết bị
 app.use("/api/pidata", piDataRouter);
-
+// Khởi tạo giao diện mặc định khi truy cập web
 app.get('/', (req, res) => res.sendFile('./public/index.html'))
 
-// PiData.find().sort({_id: -1}).limit(5).then(piData => console.log(piData));
-
+// Sokcet lắng nghe các thiết bị kết nối
 io.sockets.on('connection', function (socket) {
-  // once a client has connected, we expect to get a ping from them saying what room they want to join
   console.log("device connect")
-  socket.on('join-channel', function (data) {
-    console.log(data.room);
-    socket.join(data.room);
-  });
+  
+  // Nêw webserver nhận được event "send-data" được emit từ Pi (Bao gồm thông tin về DeviceID, Nhiệt độ, Độ ảnh, Thời gian đo)
+  // thì nó sẽ lưu dự liệu nhận được vào database
   socket.on("send-data", (data) => {
     console.log(data);
     let item = new PiData(data);
     item.save();
-    io.emit('data-mockup', item);
+    // io.emit('data-mockup', item);
   });
-  socket.emit('rr', {hello: 'hello'});
-  // socket.emit('data-mockup', {hello: 'hello'});
+  // socket.emit('rr', {hello: 'hello'});
+  
   socket.on("create-device", (data) => {
     let item = new Device(data);
     item.save((err, doc) => {
@@ -99,10 +80,14 @@ io.sockets.on('connection', function (socket) {
       socket.emit("rr",doc);
     });
   })
+
+  // Nếu webserver nhận được event "ledOn" từ webclient yêu cầu bật tắt đèn trên Pi
+  // thị nó sẽ emit event Led cho Pi để bật đèn
   socket.on('ledOn', (data) => {
     console.log(data)
     io.sockets.emit('led', data);
   })
+  // Socket lắng nghe khi có 1 thiết bị ngắt kết nối
   socket.on('disconnect', function(){
     console.log("device disconnect")
   });

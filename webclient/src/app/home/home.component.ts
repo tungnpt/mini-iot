@@ -14,6 +14,8 @@ export class HomeComponent implements OnInit {
   private lat: number = 20.976044;
   private lng: number = 105.815666;
 
+  private choosedDevice: Device;
+
   constructor(private _DeviceService: DeviceService) { }
 
   async ngOnInit() {
@@ -22,6 +24,12 @@ export class HomeComponent implements OnInit {
 
   deleteDevice(device: Device){
     console.log(device)
+    this.choosedDevice = device;
+    // this.devices = this.devices.filter(d => d !== device)
+    // this._DeviceService.deleteDevice(device._id)
+  }
+
+  delete(device: Device){
     this.devices = this.devices.filter(d => d !== device)
     this._DeviceService.deleteDevice(device._id)
   }

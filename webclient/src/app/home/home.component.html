@@ -30,7 +30,7 @@
           <a class="btn btn-info" routerLink="/device/edit/{{device._id}}">
             <span class="fas fa-pen" aria-hidden="true"></span> Edit
           </a>
-          <a class="btn btn-warning" data-toggle="modal" data-target="#deleteModal" style="color: white">
+          <a class="btn btn-warning" data-toggle="modal" data-target="#deleteModal" style="color: white" (click)="deleteDevice(device)">
             <span class="fas fa-trash" aria-hidden="true"></span> Delete
           </a>
 
@@ -50,7 +50,7 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
                         <span class="fas fa-times" aria-hidden="true"></span> Cancel
                     </button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteDevice(device)">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="delete(choosedDevice)">
                         <span class="	fas fa-check" aria-hidden="true"></span> Confirm
                     </button>
                   </div>
